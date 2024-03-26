@@ -1,0 +1,28 @@
+﻿@model CreateRegisterViewModel
+@{
+    Layout = null;
+}
+<div class="container">
+    <form method="post">
+        <br />
+        <br />
+        <label>Ad</label>
+        <input type="text" asp-for="Name" />
+        <br />
+        <label>Soyad</label>
+        <input type="text" asp-for="Surname" />
+        <br />
+        <label>kullanıcı Ad</label>
+        <input type="text" asp-for="UserName" />
+        <br />
+        <label>Email</label>
+        <input type="text" asp-for="Email" />
+        <br />
+        <label>sifre</label>
+        <input type="text" asp-for="Password" />
+        <br />
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <br />
+        <button>Kayıt ol</button>
+    </form>
+</div>
