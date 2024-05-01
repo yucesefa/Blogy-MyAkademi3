@@ -1,0 +1,15 @@
+﻿@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+@await Component.InvokeAsync("_BlogListHeadComponentPartial")
+<body>
+    @await Component.InvokeAsync("_BlogListNavbarComponentPartial")
+    @await Component.InvokeAsync("_BlogListPoliticsComponentPartial")
+    @await Component.InvokeAsync("_BlogListFooterComponentPartial")
+    <!-- /.site-footer -->
+    <!-- Preloader -->
+    @await Component.InvokeAsync("_BlogListScriptsComponentPartial")
+</body>
+</html>

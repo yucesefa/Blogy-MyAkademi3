@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="Areas\Writer\Views\Shared\Components\_LayoutHeadComponentPartial\Default.cshtml" />
+    <None Include="Areas\Writer\Views\Shared\Components\_LayoutNavbarComponentPartial\Default.cshtml" />
+    <None Include="Areas\Writer\Views\Shared\Components\_LayoutSideBarComponentPartial\Default.cshtml" />
+    <None Include="Areas\Writer\Views\WriterLayout\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.27">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -16,6 +23,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Blogy.BusinessLayer\Blogy.BusinessLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Writer\Data\" />
   </ItemGroup>
 
 </Project>

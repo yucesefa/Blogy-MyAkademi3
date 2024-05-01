@@ -1,4 +1,5 @@
-﻿using Blogy.DataAccessLayer.Abstract;
+﻿using Blogy.BusinessLayer.Abstract;
+using Blogy.DataAccessLayer.Abstract;
 using Blogy.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Blogy.BusinessLayer.Concrete
 {
-    public class ArticleManager : IArticleDal
+    public class ArticleManager : IArticleService
     {
         private readonly IArticleDal _articleDal;
 
@@ -17,7 +18,7 @@ namespace Blogy.BusinessLayer.Concrete
             _articleDal = articleDal;
         }
 
-        public void Delete(int id)
+        public void TDelete(int id)
         {
             if (id != 0)
             {
@@ -29,39 +30,60 @@ namespace Blogy.BusinessLayer.Concrete
             }
         }
 
-        public Article GetById(int id)
+        public Article TGetArticleByIdWithWriterAndCategory(int id)
+        {
+            return _articleDal.GetArticleByIdWithWriterAndCategory(id);
+        }
+
+        public List<Article> TGetArticlesByWriter(int id)
+        {
+            return _articleDal.GetArticlesByWriter(id);
+        }
+
+        public List<Article> TGetArticleSearch(string search)
+        {
+            return _articleDal.GetArticleSearch(search);
+        }
+
+        public List<Article> TGetArticleWithWriter()
+        {
+            return _articleDal.GetArticlesWithWriter();
+        }
+
+        public Article TGetById(int id)
         {
             //eğer id değerine göre yetkisi varsa
             return _articleDal.GetById(id);
         }
 
-        public List<Article> GetListAll()
+        public List<Article> TGetListAll()
         {
             return _articleDal.GetListAll();
         }
 
-        public void Insert(Article entity)
+        public List<Article> TGetOtherBlogPostByWriter(int id)
         {
-            if (entity != null && entity.Description.Length > 50 && entity.CategoryId >= 0)
-            {
-                _articleDal.Insert(entity);
-            }
-            else
-            {
-                //hata mesajı
-            }
+            return _articleDal.GetOtherBlogPostByWriter(id);
         }
 
-        public void Update(Article entity)
+        public Writer TGetWriterInfoByArticleWriter(int id)
         {
-            if (entity != null && entity.Description.Length > 50 && entity.CategoryId >= 0)
-            {
-                _articleDal.Update(entity);
-            }
-            else
-            {
-                //hata mesajı
-            }
+            return _articleDal.GetWriterInfoByArticleWriter(id);
+        }
+
+        public void TInsert(Article entity)
+        {
+            _articleDal.Insert(entity);
+        }
+
+        public List<Article> TLast4PostList()
+        {
+            return _articleDal.Last4PostList();
+        }
+
+        public void TUpdate(Article entity)
+        {
+            _articleDal.Update(entity);
         }
     }
 }
