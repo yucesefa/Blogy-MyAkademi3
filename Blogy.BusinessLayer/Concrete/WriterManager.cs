@@ -42,5 +42,15 @@ namespace Blogy.BusinessLayer.Concrete
         {
             _writerDal.Update(entity);
         }
+
+        public void TWriterMakeActive(int id)
+        {
+            _writerDal.MakeActiveWriter(id);
+        }
+
+        public void TWriterMakePassive(int id)
+        {
+            _writerDal.MakePassiveWriter(id);
+        }
     }
 }

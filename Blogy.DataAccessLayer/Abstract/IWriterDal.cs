@@ -9,5 +9,7 @@ namespace Blogy.DataAccessLayer.Abstract
 {
     public interface IWriterDal:IGenericDal<Writer>
     {
+        void MakeActiveWriter(int id);
+        void MakePassiveWriter(int id);
     }
 }

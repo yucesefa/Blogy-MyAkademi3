@@ -1,0 +1,23 @@
+﻿@model Blogy.EntityLayer.Concrete.Category
+
+@{
+    ViewData["Title"] = "UpdateCategory";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Kategori İşlemleri</h4>
+            <p class="card-description"> Kategori Düzenle </p>
+            <form class="forms-sample" method="post">
+                <div class="form-group">
+                    <input type="hidden" asp-for="CategoryId" />
+                    <label for="exampleInputUsername1">Kategori Adı</label>
+                    <input type="text" class="form-control" id="exampleInputUsername1" value="@Model.CategoryName" placeholder="Kategori Adı" name="CategoryName">
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Güncelle</button>
+            </form>
+        </div>
+    </div>
+</div>

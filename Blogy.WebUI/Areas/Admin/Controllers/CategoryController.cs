@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Blogy.WebUI.Areas.Admin.Controllers
 {
+    [Area("Admin")]
+    [Route("Admin/{controller}/{action}/{id?}")]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
@@ -34,9 +36,10 @@ namespace Blogy.WebUI.Areas.Admin.Controllers
             return RedirectToAction("CategoryList");
         }
         [HttpGet]
-        public IActionResult UpdateCategory()
+        public IActionResult UpdateCategory(int id)
         {
-            return View();
+            var values = _categoryService.TGetById(id);
+            return View(values);
         }
         [HttpPost]
         public IActionResult UpdateCategory(Category category)
@@ -44,7 +47,7 @@ namespace Blogy.WebUI.Areas.Admin.Controllers
             _categoryService.TUpdate(category);
             return RedirectToAction("CategoryList");
         }
-        public IActionResult DeleteCategory(int id)
+        public IActionResult RemoveCategory(int id)
         {
             _categoryService.TDelete(id);
             return RedirectToAction("CategoryList");

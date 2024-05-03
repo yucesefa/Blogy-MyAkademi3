@@ -9,5 +9,7 @@ namespace Blogy.BusinessLayer.Abstract
 {
     public interface IWriterService : IGenericService<Writer>
     {
+        void TWriterMakePassive(int id);
+        void TWriterMakeActive(int id);
     }
 }
