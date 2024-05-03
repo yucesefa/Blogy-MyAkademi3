@@ -52,13 +52,19 @@ namespace Blogy.DataAccessLayer.EntityFramework
 
         public List<Article> GetOtherBlogPostByWriter(int id)
         {
-            var values = _context.Articles.Where(x => x.AppUserId == id).Include(x => x.Writer).Take(3).ToList();
+            var values = _context.Articles.Where(x => x.AppUserId == id).OrderByDescending(x=>x.CreatedDate).Take(3).ToList();
             return values;
         }
 
         public List<Article> GetArticleSearch(string search)
         {
             var values = _context.Articles.Where(x => x.Title.Contains(search)).Include(x => x.Writer).ToList();
+            return values;
+        }
+
+        public List<Article> GetArticleByWriterAndCategory(int id)
+        {
+            var values = _context.Articles.Where(x => x.AppUserId == id).Include(x => x.Category).ToList();
             return values;
         }
     }

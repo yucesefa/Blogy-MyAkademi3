@@ -16,5 +16,6 @@ namespace Blogy.BusinessLayer.Abstract
         List<Article> TLast4PostList();
         List<Article> TGetOtherBlogPostByWriter(int id);
         List<Article> TGetArticleSearch(string search);
+        List<Article> TGetArticleByWriterAndCategory(int id);
     }
 }

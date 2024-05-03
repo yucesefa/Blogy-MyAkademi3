@@ -234,6 +234,62 @@ namespace Blogy.DataAccessLayer.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("Blogy.EntityLayer.Concrete.Message", b =>
+                {
+                    b.Property<int>("MessageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageId"), 1L, 1);
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ReceiverMail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverNameSurname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderMail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderNameSurname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MessageId");
+
+                    b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("Blogy.EntityLayer.Concrete.Notification", b =>
+                {
+                    b.Property<int>("NotificationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NotificationId"), 1L, 1);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("NotificationId");
+
+                    b.ToTable("Notifications");
+                });
+
             modelBuilder.Entity("Blogy.EntityLayer.Concrete.Tag", b =>
                 {
                     b.Property<int>("TagId")

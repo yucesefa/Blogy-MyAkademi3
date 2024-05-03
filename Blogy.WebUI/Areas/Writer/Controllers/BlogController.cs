@@ -13,12 +13,14 @@ namespace Blogy.WebUI.Areas.Writer.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly IArticleService _articleService;
         private readonly ICategoryService _categoryService;
+        private readonly ICommentService _commentService;
 
-        public BlogController(UserManager<AppUser> userManager, IArticleService articleService, ICategoryService categoryService)
+        public BlogController(UserManager<AppUser> userManager, IArticleService articleService, ICategoryService categoryService, ICommentService commentService)
         {
             _userManager = userManager;
             _articleService = articleService;
             _categoryService = categoryService;
+            _commentService = commentService;
         }
         [Route("")]
         [Route("MyBlogList")]
@@ -37,23 +39,23 @@ namespace Blogy.WebUI.Areas.Writer.Controllers
                                            select new SelectListItem
                                            {
                                                Text = x.CategoryName,
-                                               Value=x.CategoryId.ToString()
+                                               Value = x.CategoryId.ToString()
                                            }).ToList();
             ViewBag.v = values;
             return View();
         }
         [HttpPost]
         [Route("CreateBlog")]
-        public async Task<IActionResult> CreateBlog( Article article)
+        public async Task<IActionResult> CreateBlog(Article article)
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             article.AppUserId = user.Id;
             article.WriterId = user.Id;
-            article.CreatedDate=DateTime.Now;
+            article.CreatedDate = DateTime.Now;
             _articleService.TInsert(article);
             return RedirectToAction("MyBlogList");
         }
-        [Route("Delete/Blog/{id}")]
+        [Route("DeleteBlog/{id}")]
         public IActionResult DeleteBlog(int id)
         {
             _articleService.TDelete(id);
@@ -63,7 +65,7 @@ namespace Blogy.WebUI.Areas.Writer.Controllers
         [Route("EditBlog/{id}")]
         public IActionResult EditBlog(int id)
         {
-            var values  = _articleService.TGetById(id);
+            var values = _articleService.TGetById(id);
             List<SelectListItem> category = (from x in _categoryService.TGetListAll()
                                              select new SelectListItem
                                              {
@@ -77,8 +79,20 @@ namespace Blogy.WebUI.Areas.Writer.Controllers
         [Route("EditBlog/{id}")]
         public IActionResult EditBlog(Article article)
         {
-            article.CreatedDate= DateTime.Now;
+            article.CreatedDate = DateTime.Now;
             _articleService.TUpdate(article);
+            return RedirectToAction("MyBlogList");
+        }
+        [Route("BlogArticleComment/{id}")]
+        public IActionResult BlogArticleComment(int id)
+        {
+            var values = _commentService.TGetCommentsByArticleId(id);
+            return View(values);
+        }
+        [Route("DeleteComment/{id}")]
+        public IActionResult DeleteComment(int id)
+        {
+            _commentService.TDelete(id);
             return RedirectToAction("MyBlogList");
         }
     }

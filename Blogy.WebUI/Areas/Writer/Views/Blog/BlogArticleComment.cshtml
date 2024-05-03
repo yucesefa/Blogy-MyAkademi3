@@ -1,0 +1,56 @@
+﻿@model List<Blogy.EntityLayer.Concrete.Comment>
+@{
+    ViewData["Title"] = "BlogArticleComment";
+    Layout = "~/Areas/Writer/Views/WriterLayout/Index.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">Blog'a Ait Yorumlar</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Yorumlar</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Blog Yorumları </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Blog'a Ait Yorum Listesi</h4>
+                    <p class="card-description">
+                        Aşağıdaki tablodan size ait blogların yorumlarını görüntüleyebilir,üzerlerinde işlem yapabilirsiniz.
+                    </p>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Adı Soyadı</th>
+                                    <th>Tarih</th>
+                                    <th>Sil</th>
+                                    <th>Blog Yorumları</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.CommentId</td>
+                                        <td>@item.NameSurname</td>
+                                        <td>@item.Content</td>
+                                        <td>@item.CommentDate.ToShortDateString()</td>
+                                        <td><a href ="/Writer/Blog/DeleteComment/@item.CommentId" class="btn btn-danger">Sil</a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -18,6 +18,7 @@ namespace Blogy.DataAccessLayer.Abstract
         List<Article> Last4PostList();
         List<Article> GetOtherBlogPostByWriter(int id);
         List<Article> GetArticleSearch(string search);
+        List<Article> GetArticleByWriterAndCategory(int id);
 
     }
 }
