@@ -29,6 +29,9 @@ builder.Services.AddScoped<INotificationService, NotificationManager>();
 builder.Services.AddScoped<IMessageDal, EfMessageDal>();
 builder.Services.AddScoped<IMessageService, MessageManager>();
 
+builder.Services.AddScoped<IWriterDal, EfWriterDal>();
+builder.Services.AddScoped<IWriterService, WriterManager>();
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<BlogyContext>().AddErrorDescriber<CustomIdentityValidator>();
 
@@ -36,6 +39,7 @@ builder.Services.AddLocalization(opt =>
 {
     opt.ResourcesPath = "Resources";
 });
+
 builder.Services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
 
 builder.Services.AddMvc(config =>
@@ -68,8 +72,9 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-var supportCultures = new[] { "en", "fr", "es", "gr", "tr", "de" };
-var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportCultures[4]).AddSupportedCultures(supportCultures).AddSupportedUICultures(supportCultures);
+
+var supportedCultures = new[] { "en", "fr", "es", "gr", "tr", "de" };
+var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[4]).AddSupportedCultures(supportedCultures).AddSupportedUICultures(supportedCultures);
 app.UseRequestLocalization(localizationOptions);
 
 

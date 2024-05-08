@@ -1,5 +1,4 @@
-﻿@using Blogy.EntityLayer.Concrete
-@model List<Writer>
+﻿@model List<Blogy.EntityLayer.Concrete.Writer>
 @{
     ViewData["Title"] = "WriterList";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
@@ -17,9 +16,8 @@
                         <th>Görsel</th>
                         <th>Yazar Durum</th>
                         <th>Yazılar</th>
-                        <th>Sil</th>
-                        <th>Güncelle</th>
-                        <th>Yazara Ait Bloglar</th>
+                        <th>Pasif Yap</th>
+                        <th>Aktif Yap</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,9 +33,9 @@
                                 </li>
                             </td>
                             <td>@item.Status</td>
-                            <td><a href="/Admin/Writer/DeleteWriter/@item.WriterId" class="btn btn-danger">Sil</a></td>
-                            <td><a href="/Admin/Writer/UpdateWriter/@item.WriterId" class="btn btn-info">Güncelle</a></td>
-                            <td><a href="#" class="btn btn-secondary">Bloglar</a></td>
+                            <td><a href="/Writer/Blog/MyBlogList/@item.WriterId" class="btn btn-warning">Görüntüle</a></td>
+                            <td><a href="/Admin/Writer/WriterMakePassive/@item.WriterId" class="btn btn-danger">Pasif Yap</a></td>
+                            <td><a href="/Admin/Writer/WriterMakeActive/@item.WriterId" class="btn btn-success">Aktif Yap</a></td>
                         </tr>
                     }
 

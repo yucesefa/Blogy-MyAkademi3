@@ -32,4 +32,10 @@
     <Folder Include="Areas\Writer\Data\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Areas\Writer\Views\Shared\Components\_LayoutSideBarComponentPartial\Default.en.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

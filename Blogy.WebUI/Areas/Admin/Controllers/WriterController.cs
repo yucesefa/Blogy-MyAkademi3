@@ -21,12 +21,12 @@ namespace Blogy.WebUI.Areas.Admin.Controllers
             var values = _writerService.TGetListAll();
             return View(values);
         }
-        [Route("DeleteWriter/{id}")]
-        public IActionResult DeleteWriter(int id)
-        {
-            _writerService.TDelete(id);
-            return RedirectToAction("WriterList");
-        }
+        //[Route("DeleteWriter/{id}")]
+        //public IActionResult DeleteWriter(int id)
+        //{
+        //    _writerService.TDelete(id);
+        //    return RedirectToAction("WriterList");
+        //}
         [Route("WriterMakeActive/{id}")]
         public IActionResult WriterMakeActive(int id)
         {
